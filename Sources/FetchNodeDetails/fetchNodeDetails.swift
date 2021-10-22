@@ -22,7 +22,7 @@ open class FetchNodeDetails {
     let yourContractABI: String = contractABIString
     public var nodeDetails : NodeDetails?
     
-    public init(proxyAddress: String, network: EthereumNetwork, logLevel: OSLogType = .default){
+	public init(proxyAddress: String, network: EthereumNetwork, logLevel: OSLogType = .default, sessionConfig: URLSessionConfiguration = URLSessionConfiguration.default) {
         fndLogType = logLevel // to be used across application
         
         // mainnet proxy contract address - 0x638646503746d5456209e33a2ff5e3226d698bea
@@ -30,12 +30,13 @@ open class FetchNodeDetails {
         self.proxyAddress = EthereumAddress(proxyAddress)
         self.network = network
         
-        if(network == EthereumNetwork.MAINNET){
+        if(network == EthereumNetwork.MAINNET) {
             let clientUrl = URL(string: "https://mainnet.infura.io/v3/b8cdb0e4cff24599a286bf8e87ff1c96")!
-            self.client = EthereumClient(url: clientUrl)
-        }else{
+            self.client = EthereumClient(url: clientUrl, sessionConfig: sessionConfig)
+			
+        } else {
             let clientUrl = URL(string: "https://ropsten.infura.io/v3/b8cdb0e4cff24599a286bf8e87ff1c96")!
-            self.client = EthereumClient(url: clientUrl)
+            self.client = EthereumClient(url: clientUrl, sessionConfig: sessionConfig)
         }
     }
     
