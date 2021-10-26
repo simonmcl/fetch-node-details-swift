@@ -22,7 +22,7 @@ open class FetchNodeDetails {
     let yourContractABI: String = contractABIString
     public var nodeDetails : NodeDetails?
     
-	public init(proxyAddress: String, network: EthereumNetwork, logLevel: OSLogType = .default, sessionConfig: URLSessionConfiguration = URLSessionConfiguration.default) {
+	public init(proxyAddress: String, network: EthereumNetwork, logLevel: OSLogType = .default, sessionConfig: URLSessionConfiguration) {
         fndLogType = logLevel // to be used across application
         
         // mainnet proxy contract address - 0x638646503746d5456209e33a2ff5e3226d698bea
